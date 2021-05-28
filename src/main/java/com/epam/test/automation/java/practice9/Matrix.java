@@ -3,6 +3,9 @@ package com.epam.test.automation.java.practice9;
 import java.text.DecimalFormat;
 
 public class Matrix {
+    private int numberOfRows;
+    private int numberOfColumns;
+    double[][] matrix;
 
     /**
      * Implement a constructor that creates an empty matrix with a given number of rows
@@ -13,8 +16,9 @@ public class Matrix {
      * @return Returns a new instance of the matrix with the specified parameters
      */
     public Matrix(int row, int column) {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+        this.numberOfRows = row;
+        this.numberOfColumns = column;
+        this.matrix = new double[row][column];
     }
 
     /**
@@ -25,25 +29,22 @@ public class Matrix {
      * @throws MatrixException if the incoming array with zero number of rows returns the message "Array passed with zero number of rows",
      *                         if the incoming array with zero number of columns returns the message "Array passed with zero number of columns"
      */
-    public Matrix(double[][] twoDimensionalArray) throws MatrixException {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+    public Matrix(double[][] twoDimensionalArray) {
+        this.matrix = twoDimensionalArray;
     }
 
     /**
      * @return Returns the number of rows in a matrix
      */
     public final int rows() {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+        return numberOfRows;
     }
 
     /**
      * @return Returns the number of columns in a matrix
      */
     public final int columns() {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+       return numberOfColumns;
     }
 
     /**
@@ -52,8 +53,7 @@ public class Matrix {
      * @return Standard two-dimensional array
      */
     public double[][] twoDimensionalArrayOutOfMatrix() {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+        return matrix;
     }
 
     /**
@@ -64,9 +64,9 @@ public class Matrix {
      * @return Returns the value of a matrix element <code>[row,column]</code>
      * @throws MatrixException if index incorrect, returns message "Incompatible matrix sizes"
      */
-    public double getValue(int row, int column) throws MatrixException {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+    public double getValue(int row, int column) {
+        double value = matrix[row][column];
+        return value;
     }
 
     /**
@@ -77,9 +77,8 @@ public class Matrix {
      * @param newValue new value of a matrix element
      * @throws MatrixException if index incorrect, returns message "Incompatible matrix sizes"
      */
-    public void setValue(int row, int column, double newValue) throws MatrixException {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+    public void setValue(int row, int column, double newValue)  {
+        matrix[row][column] = newValue;
     }
 
     /**
@@ -91,8 +90,14 @@ public class Matrix {
      * @throws MatrixException if incompatible matrix sizes, returns message "Incompatible matrix sizes"
      */
     public Matrix addition(Matrix matrix) throws MatrixException {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+        double[][] temp = new double[numberOfRows][numberOfColumns];
+        for(int i=0; i<numberOfRows; i++) {
+            for (int j=0; j<numberOfColumns; j++) {
+                temp[i][j] = this.matrix[i][j]+matrix.twoDimensionalArrayOutOfMatrix()[i][j];
+            }
+        }
+        Matrix result = new Matrix(temp);
+        return result;
     }
 
     /**
@@ -103,9 +108,16 @@ public class Matrix {
      * @return Returns a new resulting matrix
      * @throws MatrixException if incompatible matrix sizes, returns message "Incompatible matrix sizes"
      */
-    public Matrix subtraction(final Matrix matrix) throws MatrixException {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
+    public Matrix subtraction(final Matrix matrix)  {
+       double[][] matrixSubstracted = matrix.twoDimensionalArrayOutOfMatrix();
+        double[][] temp = new double[numberOfRows][numberOfColumns];
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfColumns; j++) {
+                temp[i][j] = this.matrix[i][j] - matrixSubstracted[i][j];
+            }
+        }
+        Matrix result = new Matrix(temp);
+        return result;
     }
 
     /**
