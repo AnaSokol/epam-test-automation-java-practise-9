@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!-- *************************************************************** -->
+<!-- This suite is used to specify the location of the TEACHER tests -->
+<!-- This file is required                                           -->
+<!-- *************************************************************** -->
+
+<suite name="StudentSuite" time-out="10000" verbose="1">
+    <test name="StudentTests">
+        <classes>
+            <class name="com.epam.test.automation.java.practice9.MatrixTest"/>
+        </classes>
+    </test>
+</suite>
