@@ -1,7 +1,6 @@
 package com.epam.test.automation.java.practice9;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 public class Matrix {
     private int numberOfRows;
@@ -28,12 +27,11 @@ public class Matrix {
         return numberOfColumns;
     }
 
-    public double getValue(int row, int column) throws MatrixException {
-        double value = matrix[row][column];
-        return value;
+    public double getValue(int row, int column) {
+        return matrix[row][column];
     }
 
-    public void setValue(int row, int column, double newValue) throws MatrixException {
+    public void setValue(int row, int column, double newValue) {
         matrix[row][column] = newValue;
     }
 
@@ -48,8 +46,7 @@ public class Matrix {
                 temp[i][j] = this.matrix[i][j]+matrix.twoDimensionalArrayOutOfMatrix()[i][j];
             }
         }
-        Matrix result = new Matrix(temp);
-        return result;
+        return new Matrix(temp);
     }
 
     public Matrix subtraction(final Matrix matrix) {
@@ -60,8 +57,7 @@ public class Matrix {
                 temp[i][j] = this.matrix[i][j] - matrixSubstracted[i][j];
             }
         }
-        Matrix result = new Matrix(temp);
-        return result;
+        return new Matrix(temp);
     }
 
     public Matrix multiplication(final Matrix matrix) {
@@ -75,8 +71,7 @@ public class Matrix {
                 }//end of k loop
             }//end of j loop
         }
-        Matrix result = new Matrix(temp);
-        return result;
+        return new Matrix(temp);
     }
 
 
