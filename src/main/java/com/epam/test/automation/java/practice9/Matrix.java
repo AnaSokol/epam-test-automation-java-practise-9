@@ -1,6 +1,7 @@
 package com.epam.test.automation.java.practice9;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 
 public class Matrix {
     private int numberOfRows;
@@ -31,6 +32,8 @@ public class Matrix {
      */
     public Matrix(double[][] twoDimensionalArray) {
         this.matrix = twoDimensionalArray;
+        this.numberOfRows = this.matrix.length;
+        this.numberOfColumns = this.matrix[0].length;
     }
 
     /**
@@ -128,10 +131,21 @@ public class Matrix {
      * @return Returns a new resulting matrix
      * @throws MatrixException if incompatible matrix sizes, returns message "Incompatible matrix sizes"
      */
-    // public Matrix multiplication(final Matrix matrix) {
-    //     //TODO: Delete line below and write your own solution;
-    //     throw new UnsupportedOperationException();
-    // }
+    public Matrix multiplication(final Matrix matrix) {
+        double[][] multiplier = matrix.twoDimensionalArrayOutOfMatrix();
+        double[][] temp = new double[numberOfRows][matrix.columns()];
+        for(int i=0; i<numberOfRows; i++){
+            for(int j=0; j<matrix.columns(); j++){
+                temp[i][j]=0;
+                for(int k=0; k<matrix.rows(); k++)
+                {
+                    temp[i][j]+=this.matrix[i][k]*multiplier[k][j];
+                }//end of k loop
+            }//end of j loop
+        }
+        Matrix result = new Matrix(temp);
+        return result;
+    }
 
     @Override
     public String toString() {
