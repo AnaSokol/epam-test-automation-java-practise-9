@@ -89,7 +89,7 @@ public class Matrix {
      * @return Returns a new resulting matrix
      * @throws MatrixException if incompatible matrix sizes, returns message "Incompatible matrix sizes"
      */
-    public Matrix addition(Matrix matrix) throws MatrixException {
+    public Matrix addition(Matrix matrix) {
         double[][] temp = new double[numberOfRows][numberOfColumns];
         for(int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfColumns; j++) {
@@ -128,10 +128,10 @@ public class Matrix {
      * @return Returns a new resulting matrix
      * @throws MatrixException if incompatible matrix sizes, returns message "Incompatible matrix sizes"
      */
-    public Matrix multiplication(final Matrix matrix) throws MatrixException {
-        //TODO: Delete line below and write your own solution;
-        throw new UnsupportedOperationException();
-    }
+    // public Matrix multiplication(final Matrix matrix) {
+    //     //TODO: Delete line below and write your own solution;
+    //     throw new UnsupportedOperationException();
+    // }
 
     @Override
     public String toString() {
