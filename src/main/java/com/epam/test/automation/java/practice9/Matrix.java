@@ -14,6 +14,12 @@ public class Matrix {
     }
     
     Matrix(double[][] twoDimensionalArray) throws MatrixException {
+        if (twoDimensionalArray.length == 0) {
+            throw new MatrixException("Array passed with zero number of rows");
+        }
+        if (twoDimensionalArray[0].length == 0) {
+            throw new MatrixException("Array passed with zero number of columns");
+        }
         this.matrix = twoDimensionalArray;
         this.numberOfRows = this.matrix.length;
         this.numberOfColumns = this.matrix[0].length;
@@ -27,11 +33,17 @@ public class Matrix {
         return numberOfColumns;
     }
 
-    public double getValue(int row, int column) {
+    public double getValue(int row, int column) throws MatrixException {
+        if (matrix.length < row || row <= 0 || matrix[0].length < column || column <= 0){
+            throw new MatrixException("Incompatible matrix sizes");
+        }
         return matrix[row][column];
     }
 
-    public void setValue(int row, int column, double newValue) {
+    public void setValue(int row, int column, double newValue) throws MatrixException {
+        if (matrix.length < row || row <= 0 || matrix[0].length < column || column <= 0){
+            throw new MatrixException("Incompatible matrix sizes");
+        }
         matrix[row][column] = newValue;
     }
 
@@ -39,7 +51,11 @@ public class Matrix {
         return matrix;
     }
 
-    public Matrix addition(Matrix matrix) {
+    public Matrix addition(Matrix matrix) throws MatrixException {
+        if (matrix.twoDimensionalArrayOutOfMatrix().length != this.matrix.length ||
+                matrix.twoDimensionalArrayOutOfMatrix()[0].length != this.matrix[0].length){
+            throw new MatrixException("Incompatible matrix sizes");
+        }
         double[][] temp = new double[numberOfRows][numberOfColumns];
         for(int i=0; i<numberOfRows; i++) {
             for (int j=0; j<numberOfColumns; j++) {
@@ -49,19 +65,27 @@ public class Matrix {
         return new Matrix(temp);
     }
 
-    public Matrix subtraction(final Matrix matrix) {
-        double[][] matrixSubstracted = matrix.twoDimensionalArrayOutOfMatrix();
+    public Matrix subtraction(final Matrix matrix) throws MatrixException {
+        double[][] matrixSubtracted = matrix.twoDimensionalArrayOutOfMatrix();
+        if (matrixSubtracted.length != this.matrix.length ||
+                matrixSubtracted[0].length != this.matrix[0].length) {
+            throw new MatrixException("Incompatible matrix sizes");
+        }
         double[][] temp = new double[numberOfRows][numberOfColumns];
         for (int i = 0; i < numberOfRows; i++) {
             for (int j = 0; j < numberOfColumns; j++) {
-                temp[i][j] = this.matrix[i][j] - matrixSubstracted[i][j];
+                temp[i][j] = this.matrix[i][j] - matrixSubtracted[i][j];
             }
         }
         return new Matrix(temp);
     }
 
-    public Matrix multiplication(final Matrix matrix) {
+    public Matrix multiplication(final Matrix matrix) throws MatrixException {
         double[][] multiplier = matrix.twoDimensionalArrayOutOfMatrix();
+        if (multiplier.length != this.matrix[0].length ||
+                multiplier[0].length != this.matrix.length ){
+            throw new MatrixException("Incompatible matrix sizes");
+        }
         double[][] temp = new double[numberOfRows][matrix.columns()];
         for(int i=0; i<numberOfRows; i++){
             for(int j=0; j<matrix.columns(); j++) {
