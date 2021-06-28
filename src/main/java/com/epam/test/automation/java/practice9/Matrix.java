@@ -34,7 +34,7 @@ public class Matrix {
     }
 
     public double getValue(int row, int column) throws MatrixException {
-        if (matrix.length < row || row <= 0 || matrix[0].length < column || column <= 0){
+        if (matrix.length <= row || row < 0 || matrix[0].length <= column || column < 0){
             throw new MatrixException("Incompatible matrix sizes");
         }
         return matrix[row][column];
