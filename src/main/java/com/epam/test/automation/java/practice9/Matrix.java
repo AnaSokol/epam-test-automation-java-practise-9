@@ -13,7 +13,7 @@ public class Matrix {
         this.matrix = new double[row][column];
     }
     
-    Matrix(double[][] twoDimensionalArray){
+    Matrix(double[][] twoDimensionalArray) throws MatrixException {
         this.matrix = twoDimensionalArray;
         this.numberOfRows = this.matrix.length;
         this.numberOfColumns = this.matrix[0].length;
